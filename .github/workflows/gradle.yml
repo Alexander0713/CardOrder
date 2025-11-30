@@ -22,5 +22,5 @@ jobs:
     - name: Wait for app to start
       run: sleep 15
       
-    - name: Run tests with Gradle Wrapper
-      run: ./gradlew test --no-daemon
+    - name: Run tests with Gradle
+      run: gradle test --no-daemon
