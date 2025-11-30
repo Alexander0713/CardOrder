@@ -19,11 +19,13 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x gradlew
       
-    - name: Start SUT
-      run: java -jar ./artifacts/app-order.jar &
+    - name: Start SUT and wait for it
+      run: |
+        java -jar ./artifacts/app-order.jar &
+        echo "Waiting for app to start on port 9999..."
+        timeout 30s bash -c 'until curl -s http://localhost:9999 > /dev/null; do sleep 1; done'
+        echo "App is ready!"
+        curl -s http://localhost:9999 | head -n 5
       
-    - name: Wait for app to start
-      run: sleep 15
-      
-    - name: Run tests with Gradle Wrapper
+    - name: Run tests
       run: ./gradlew test --no-daemon
