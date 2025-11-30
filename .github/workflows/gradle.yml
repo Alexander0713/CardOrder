@@ -16,11 +16,14 @@ jobs:
         distribution: 'temurin'
         cache: 'gradle'
         
+    - name: Make gradlew executable
+      run: chmod +x gradlew
+      
     - name: Start SUT
       run: java -jar ./artifacts/app-order.jar &
       
     - name: Wait for app to start
       run: sleep 15
       
-    - name: Run tests with Gradle
-      run: gradle test --no-daemon
+    - name: Run tests with Gradle Wrapper
+      run: ./gradlew test --no-daemon
