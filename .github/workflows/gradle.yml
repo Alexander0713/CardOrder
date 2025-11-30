@@ -14,12 +14,13 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+        cache: 'gradle'
         
     - name: Start SUT
       run: java -jar ./artifacts/app-order.jar &
       
     - name: Wait for app to start
-      run: sleep 10
+      run: sleep 15
       
-    - name: Run tests
-      run: ./gradlew test
+    - name: Run tests with Gradle Wrapper
+      run: ./gradlew test --no-daemon
