@@ -28,7 +28,8 @@ public class CardOrderTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        // Открытие страницы вынесено в метод setup как предусловие тестов
+        driver.get("http://localhost:9999");
     }
 
     @AfterEach
@@ -99,9 +100,9 @@ public class CardOrderTest {
         // Галочку не ставим
         driver.findElement(By.cssSelector("button.button")).click();
 
-        // Проверяем, что чекбокс выделен красным
-        WebElement agreementCheckbox = driver.findElement(By.cssSelector("[data-test-id=agreement]"));
-        assertTrue(agreementCheckbox.getAttribute("class").contains("input_invalid"));
+        // Проверяем, что чекбокс выделен красным с использованием комбинированного селектора
+        WebElement agreementCheckbox = driver.findElement(By.cssSelector("[data-test-id=agreement].input_invalid"));
+        assertTrue(agreementCheckbox.isDisplayed());
     }
 
     @Test
