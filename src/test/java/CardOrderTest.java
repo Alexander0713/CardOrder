@@ -41,7 +41,6 @@ public class CardOrderTest {
 
     @Test
     void shouldSubmitFormWithValidData() {
-        driver.get("http://localhost:9999");
 
         // Заполняем поле "Фамилия и имя"
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Иван");
@@ -62,7 +61,6 @@ public class CardOrderTest {
 
     @Test
     void shouldShowErrorWithInvalidName() {
-        driver.get("http://localhost:9999");
 
         // Заполняем поле "Фамилия и имя" латинскими буквами
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Ivanov Ivan");
@@ -77,7 +75,6 @@ public class CardOrderTest {
 
     @Test
     void shouldShowErrorWithInvalidPhone() {
-        driver.get("http://localhost:9999");
 
         // Заполняем поле "Телефон" неверным форматом
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Иван");
@@ -92,7 +89,6 @@ public class CardOrderTest {
 
     @Test
     void shouldShowErrorWithoutAgreement() {
-        driver.get("http://localhost:9999");
 
         // Заполняем форму, но не ставим галочку
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Иван");
@@ -107,7 +103,6 @@ public class CardOrderTest {
 
     @Test
     void shouldShowErrorWithEmptyName() {
-        driver.get("http://localhost:9999");
 
         // Оставляем имя пустым
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79211234567");
@@ -120,7 +115,6 @@ public class CardOrderTest {
 
     @Test
     void shouldShowErrorWithEmptyPhone() {
-        driver.get("http://localhost:9999");
 
         // Оставляем телефон пустым
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иванов Иван");
